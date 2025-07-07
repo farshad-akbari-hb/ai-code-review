@@ -21,11 +21,24 @@ export class Main {
         }
 
         const apiKey = tl.getInput('api_key', true)!;
+        const azureEndpoint = tl.getInput('azure_endpoint', false);
+        const azureDeployment = tl.getInput('azure_deployment', false);
+        const azureApiVersion = tl.getInput('azure_api_version', false);
         const fileExtensions = tl.getInput('file_extensions', false);
         const filesToExclude = tl.getInput('file_excludes', false);
         const additionalPrompts = tl.getInput('additional_prompts', false)?.split(',')
-        
-        this._chatGpt = new ChatGPT(new OpenAI({ apiKey: apiKey }), tl.getBoolInput('bugs', true), tl.getBoolInput('performance', true), tl.getBoolInput('best_practices', true), additionalPrompts);
+
+        let openAiOptions: any = { apiKey: apiKey };
+        if (azureEndpoint && azureDeployment) {
+            openAiOptions = {
+                apiKey: '',
+                baseURL: `${azureEndpoint}/openai/deployments/${azureDeployment}`,
+                defaultHeaders: { 'api-key': apiKey },
+                defaultQuery: { 'api-version': azureApiVersion || '2024-02-15-preview' }
+            };
+        }
+
+        this._chatGpt = new ChatGPT(new OpenAI(openAiOptions), tl.getBoolInput('bugs', true), tl.getBoolInput('performance', true), tl.getBoolInput('best_practices', true), additionalPrompts);
         this._repository = new Repository();
         this._pullRequest = new PullRequest();
 

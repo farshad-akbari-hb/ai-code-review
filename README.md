@@ -8,6 +8,7 @@ Automate pull request (PR) reviews in Azure DevOps using OpenAI. This bot analyz
 - **Code Quality Suggestions**: Detect potential issues and ensure best practices are followed.
 - **Customizable Review Criteria**: Tailor the bot to specific code quality metrics.
 - **Azure DevOps Integration**: Seamlessly integrates with existing DevOps pipelines.
+- **Azure OpenAI Support**: Configure the task to use an Azure OpenAI endpoint.
 - **Natural Language Feedback**: Provides human-readable, actionable feedback.
 
 ## Use Cases
@@ -51,6 +52,10 @@ Automate pull request (PR) reviews in Azure DevOps using OpenAI. This bot analyz
          - task: AICodeReview@1
            inputs:
              api_key: $(OpenAI_ApiKey)
+             # Optional Azure OpenAI configuration
+             azure_endpoint: https://my-resource.openai.azure.com
+             azure_deployment: gpt-4
+             azure_api_version: 2024-02-15-preview
 ## FAQ
 
 ### Q: What permissions are required for Build Administrators?

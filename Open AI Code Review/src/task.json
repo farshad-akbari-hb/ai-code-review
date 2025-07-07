@@ -22,6 +22,30 @@
             "helpMarkDown": "API Key for Open AI API. "
         },
         {
+            "name": "azure_endpoint",
+            "type": "string",
+            "label": "Azure OpenAI Endpoint",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Optional Azure OpenAI endpoint URL, e.g. https://my-resource.openai.azure.com"
+        },
+        {
+            "name": "azure_deployment",
+            "type": "string",
+            "label": "Azure Deployment Name",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Name of the Azure OpenAI deployment"
+        },
+        {
+            "name": "azure_api_version",
+            "type": "string",
+            "label": "Azure API Version",
+            "defaultValue": "2024-02-15-preview",
+            "required": false,
+            "helpMarkDown": "Azure OpenAI API version"
+        },
+        {
             "name": "ai_model",
             "type": "pickList",
             "label": "Open AI API Model",
