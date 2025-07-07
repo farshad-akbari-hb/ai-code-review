@@ -22,6 +22,14 @@
             "helpMarkDown": "API Key for Open AI API. "
         },
         {
+            "name": "openAiEndpoint",
+            "type": "string",
+            "label": "Azure OpenAI Endpoint",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Optional. If using Azure OpenAI, provide the endpoint URL. Example: https://your-resource-name.openai.azure.com/"
+        },
+        {
             "name": "ai_model",
             "type": "pickList",
             "label": "Open AI API Model",

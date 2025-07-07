@@ -6,6 +6,15 @@ export class ChatGPT {
     private readonly systemMessage: string = '';
 
     constructor(private _openAi: OpenAI, checkForBugs: boolean = false, checkForPerformance: boolean = false, checkForBestPractices: boolean = false, additionalPrompts: string[] = []) {
+        let openAiEndpoint = tl.getInput('openAiEndpoint', false);
+        if (openAiEndpoint) {
+            this._openAi = new OpenAI({
+                apiKey: tl.getInput('api_key', true),
+                baseURL: openAiEndpoint,
+                defaultQuery: { 'api-version': '2023-05-15' }, // Replace with your desired API version
+                defaultHeaders: { 'api-key': tl.getInput('api_key', true) },
+            });
+        }
         this.systemMessage = `Your task is to act as a code reviewer of a Pull Request:
         - Use bullet points if you have multiple comments.
         ${checkForBugs ? '- If there are any bugs, highlight them.' : null}
